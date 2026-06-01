@@ -80,3 +80,6 @@ memory/test_credentials.md
 
 # Mobile development
 android-sdk/
+# Pod-specific environment files (use .env.example as templates)
+backend/.env
+frontend/.env
