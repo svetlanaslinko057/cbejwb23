@@ -42,12 +42,12 @@ export default function RetainerOffer() {
 
   return (
     <View style={s.wrap} testID="retainer-offer">
+      <View style={s.tierPill}>
+        <Text style={s.tierText} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85}>{tm.label.toUpperCase()}</Text>
+      </View>
       <View style={s.headRow}>
-        <View style={s.headLeft}>
-          <Ionicons name={tm.icon as any} size={18} color={T.primary} />
-          <Text style={s.title}>Keep {offer.project_title} healthy</Text>
-        </View>
-        <View style={s.tierPill}><Text style={s.tierText}>{tm.label.toUpperCase()}</Text></View>
+        <Ionicons name={tm.icon as any} size={18} color={T.primary} style={{ marginTop: 2 }} />
+        <Text style={s.title}>Keep {offer.project_title} healthy</Text>
       </View>
 
       <View style={s.priceRow}>
@@ -89,10 +89,10 @@ export default function RetainerOffer() {
 
 const s = StyleSheet.create({
   wrap: { marginBottom: T.md, backgroundColor: T.primaryBg, borderRadius: T.radius, padding: T.md, borderWidth: 1, borderColor: T.primaryBorder },
-  headRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: T.sm },
+  headRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, marginBottom: T.sm },
   headLeft: { flexDirection: 'row', alignItems: 'center', gap: 6, flex: 1 },
-  title: { color: T.text, fontSize: T.h3, fontWeight: '700', flex: 1 },
-  tierPill: { backgroundColor: T.primary, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 4 },
+  title: { color: T.text, fontSize: T.h3, fontWeight: '700', flex: 1, flexShrink: 1 },
+  tierPill: { backgroundColor: T.primary, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 4, alignSelf: 'flex-start', marginBottom: 10 },
   tierText: { color: T.bg, fontSize: T.tiny, fontWeight: '800', letterSpacing: 0.5 },
 
   priceRow: { flexDirection: 'row', alignItems: 'baseline', marginBottom: T.sm },

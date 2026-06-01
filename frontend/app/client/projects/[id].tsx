@@ -535,7 +535,7 @@ export default function ClientProjectScreen() {
                     disabled={acting === d.deliverable_id}
                   >
                     <Ionicons name="checkmark" size={14} color={T.bg} style={{ marginRight: 4 }} />
-                    <Text style={s.btnPrimaryText} numberOfLines={1}>Approve</Text>
+                    <Text style={s.btnPrimaryText} adjustsFontSizeToFit minimumFontScale={0.8} numberOfLines={2}>Approve</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     testID={`reject-${d.deliverable_id}`}
@@ -544,7 +544,7 @@ export default function ClientProjectScreen() {
                     disabled={acting === d.deliverable_id}
                   >
                     <Ionicons name="refresh" size={14} color={T.text} style={{ marginRight: 4 }} />
-                    <Text style={s.btnGhostText} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85}>Request changes</Text>
+                    <Text style={s.btnGhostText} adjustsFontSizeToFit minimumFontScale={0.8} numberOfLines={2}>Request changes</Text>
                   </TouchableOpacity>
                 </View>
                 <TouchableOpacity

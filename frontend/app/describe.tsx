@@ -1175,8 +1175,15 @@ const makeStyles = (P: Palette) => StyleSheet.create({
     fontFamily: F.sans,
     fontSize: 15,
     lineHeight: 22,
-    padding: 16,
+    // Explicit symmetric padding so Android multiline TextInputs do not
+    // collapse internal vertical padding asymmetrically.
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
     minHeight: 132,
+    textAlignVertical: 'top',
+    ...(Platform.OS === 'android' ? { includeFontPadding: false } : {}),
     ...(Platform.OS === 'web' ? { outlineStyle: 'none' as any } : {}),
   },
   inputError: {

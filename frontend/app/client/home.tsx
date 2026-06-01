@@ -146,7 +146,7 @@ export default function ClientHome() {
                 activeOpacity={0.7}
               >
                 <View style={{ flex: 1 }}>
-                  <Text style={s.depositSidebarTitle} numberOfLines={1}>{p.name}</Text>
+                  <Text style={s.depositSidebarTitle} numberOfLines={2}>{p.name}</Text>
                   <Text style={s.depositSidebarMeta}>
                     Estimate {fmtMoney(p.final_price)} · deposit {fmtMoney(p.deposit_amount)}
                   </Text>
@@ -193,10 +193,12 @@ export default function ClientHome() {
                 style={s.projectCard}
               >
                 <View style={s.projectHead}>
-                  <Text style={s.projectTitle} numberOfLines={1}>{p.title}</Text>
-                  <StatusPill tone={RISK_TONE[p.risk_state]} label={RISK_LABEL[p.risk_state] || p.risk_state} dot />
+                  <Text style={s.projectTitle}>{p.title}</Text>
+                  <View style={s.projectPillWrap}>
+                    <StatusPill tone={RISK_TONE[p.risk_state]} label={RISK_LABEL[p.risk_state] || p.risk_state} dot />
+                  </View>
                 </View>
-                {p.headline ? <Text style={s.projectHeadline} numberOfLines={2}>{p.headline}</Text> : null}
+                {p.headline ? <Text style={s.projectHeadline}>{p.headline}</Text> : null}
                 <View style={{ marginTop: 12 }}>
                   <MiniProgress pct={p.progress_pct} />
                 </View>
@@ -265,9 +267,10 @@ const s = StyleSheet.create({
     padding: T.md,
     marginBottom: T.sm,
   },
-  projectHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 },
-  projectTitle: { color: T.text, fontSize: T.h3, fontWeight: '700', flex: 1 },
-  projectHeadline: { color: T.textSecondary, fontSize: T.small, marginTop: 4, lineHeight: 19 },
+  projectHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 },
+  projectTitle: { color: T.text, fontSize: T.h3, fontWeight: '700', flex: 1, flexShrink: 1 },
+  projectPillWrap: { flexShrink: 0, marginTop: 2 },
+  projectHeadline: { color: T.textSecondary, fontSize: T.small, marginTop: 4, lineHeight: 19, flexWrap: 'wrap' },
   projectMeta: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 6 },
   projectMetaText: { color: T.textMuted, fontSize: T.tiny, fontWeight: '600' },
 
