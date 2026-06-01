@@ -37,7 +37,11 @@ const TITLES: Record<string, string> = {
   gateway: 'Welcome',
   operator: 'Operator',
   workspace: 'Workspace',
-  project: 'Project',
+  // Project surfaces (wizard / detail) carry their own in-page heading
+  // and progress indicator. A duplicate "Project" header title + CLIENT
+  // context badge above only adds noise and pushes content down on small
+  // phones. Keep the bar clean — brand + bell/chat only.
+  project: '',
   // Role cabinets are shells, not pages. The active tab is the title — header
   // must stay clean (EVA-X · avatar). Do NOT add client/developer/admin here.
   client: '',
@@ -71,7 +75,9 @@ const DETAIL_SCREENS = new Set([
 
 // Role cabinets where we also suppress the context badge (CLIENT / DEV / ADMIN).
 // The avatar carries the account context — a second badge is duplicate noise.
-const ROLE_CABINETS = new Set(['client', 'developer', 'admin']);
+// `project` is included so the wizard / project detail surfaces don't show
+// the CLIENT pill above their own in-page header.
+const ROLE_CABINETS = new Set(['client', 'developer', 'admin', 'project']);
 
 // Segments that belong to the unauthed "visitor / lead" surfaces.
 // On these we show a bare header: brand only, no title, no Login button.

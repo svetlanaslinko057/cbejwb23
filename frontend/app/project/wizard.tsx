@@ -320,8 +320,15 @@ export default function WizardScreen() {
                   activeOpacity={0.85}
                 >
                   <Text style={s.typeEmoji}>{t.emoji}</Text>
-                  <Text style={s.typeTitle}>{t.title}</Text>
-                  <Text style={s.typeSub}>{t.sub}</Text>
+                  <Text
+                    style={s.typeTitle}
+                    numberOfLines={2}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.8}
+                  >
+                    {t.title}
+                  </Text>
+                  <Text style={s.typeSub} numberOfLines={2}>{t.sub}</Text>
                 </TouchableOpacity>
               ))}
             </View>
@@ -733,7 +740,7 @@ const s = StyleSheet.create({
   typeCard: {
     width: '48%',
     backgroundColor: T.surface1, borderRadius: T.radiusLg, padding: T.md,
-    borderWidth: 1, borderColor: T.border, minHeight: 130,
+    borderWidth: 1, borderColor: T.border, minHeight: 146,
     justifyContent: 'flex-start',
     marginBottom: T.md,
   },
@@ -745,7 +752,7 @@ const s = StyleSheet.create({
     alignItems: 'center', justifyContent: 'center',
     marginBottom: T.sm,
   },
-  typeTitle: { color: T.text, fontSize: T.h3, fontWeight: '700', marginBottom: 4 },
+  typeTitle: { color: T.text, fontSize: 16, fontWeight: '700', marginBottom: 4, lineHeight: 20 },
   typeSub: { color: T.textMuted, fontSize: T.small, lineHeight: 18 },
 
   // STEP 1 — inline "More ways to build"

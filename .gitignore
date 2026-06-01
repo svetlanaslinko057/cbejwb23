@@ -83,3 +83,4 @@ android-sdk/
 # Pod-specific environment files (use .env.example as templates)
 backend/.env
 frontend/.env
+frontend/.metro-cache/
