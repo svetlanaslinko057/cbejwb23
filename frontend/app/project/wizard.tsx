@@ -172,18 +172,32 @@ export default function WizardScreen() {
       setError('');
       return;
     }
+    // step 1 — exit wizard. Use history when available; otherwise fall back
+    // to a safe home route so the button never dead-ends on deep-link or
+    // hard-refresh (where window.history is effectively empty).
+    const safeExit = () => {
+      try {
+        if (typeof window !== 'undefined' && (window.history?.length ?? 0) > 1) {
+          router.back();
+          return;
+        }
+      } catch {}
+      // Fallback — push to root; the auth gate / redirect chain takes the
+      // user to their role entry. Use replace so the wizard doesn't linger.
+      try { router.replace('/' as any); } catch { router.push('/' as any); }
+    };
     if (hasUnsaved) {
       translateAlert(
         'Leave setup?',
         "You'll lose your progress.",
         [
           { text: 'Keep editing', style: 'cancel' },
-          { text: 'Leave', style: 'destructive', onPress: () => { clearDraft(); router.back(); } },
+          { text: 'Leave', style: 'destructive', onPress: () => { clearDraft(); safeExit(); } },
         ],
       );
       return;
     }
-    router.back();
+    safeExit();
   };
 
   const clearDraft = () => { AsyncStorage.removeItem(STORAGE_KEY).catch(() => {}); };
